@@ -101,7 +101,7 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Proxy list containing entries like
 # "http://host1:port" or "https://host2:port"
-PROXY_LIST = '/path/to/proxy/list.txt'
+PROXY_LIST = 'WebScraper/list.txt'
 
 # Proxy mode
 # 0 = Every requests have different proxy
