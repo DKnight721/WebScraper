@@ -91,3 +91,29 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+# Enable or disable downloader middlewares
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
+    'scrapy_proxies.RandomProxy': 100,
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+}
+
+# Proxy list containing entries like
+# "http://host1:port" or "https://host2:port"
+PROXY_LIST = '/path/to/proxy/list.txt'
+
+# Proxy mode
+# 0 = Every requests have different proxy
+# 1 = Take only one proxy from the list and assign it for every request
+# 2 = Put a custom function to extract proxy from your list
+PROXY_MODE = 0
+
+# If proxy mode is 2, define this function
+# def custom_proxy_extractor(proxy_list):
+#     return random.choice(proxy_list)
+
+# Retry many times since proxies often fail
+RETRY_TIMES = 10
+# Retry on most common proxy-related errors
+RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
