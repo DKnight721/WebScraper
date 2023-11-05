@@ -12,6 +12,7 @@ BOT_NAME = "WebScraper"
 SPIDER_MODULES = ["WebScraper.spiders"]
 NEWSPIDER_MODULE = "WebScraper.spiders"
 
+DOWNLOAD_DELAY = 2.0
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "WebScraper (+http://www.yourdomain.com)"
