@@ -3,7 +3,7 @@ import scrapy
 class CarsSpider(scrapy.Spider):
     name = 'cars'
     allowed_domains = ['cars.com']
-    start_urls = ['https://www.cars.com/shopping/results/?dealer_id=&keyword=&list_price_max=&list_price_min=&makes[]=porsche&maximum_distance=all&mileage_max=&models[]=porsche-cayenne&monthly_payment=&page=1&page_size=100&sort=best_match_desc&stock_type=all&year_max=&year_min=&zip=80259']
+    start_urls = ['https://www.cars.com/shopping/results/?dealer_id=&keyword=&list_price_max=&list_price_min=&makes[]=lexus&maximum_distance=all&mileage_max=&models[]=lexus-is_200t&models[]=lexus-is_250&models[]=lexus-is_250c&models[]=lexus-is_300&models[]=lexus-is_350&models[]=lexus-is_350c&models[]=lexus-is_500&models[]=lexus-is_f&monthly_payment=&page_size=20&sort=best_match_desc&stock_type=all&year_max=&year_min=&zip=80259']
 
     def parse(self, response):
         # Loop through each vehicle card
