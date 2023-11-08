@@ -3,7 +3,7 @@ import scrapy
 class CarsSpider(scrapy.Spider):
     name = 'cars'
     allowed_domains = ['cars.com']
-    start_urls = ['https://www.cars.com/shopping/results/?dealer_id=&keyword=&list_price_max=&list_price_min=&makes[]=lexus&maximum_distance=all&mileage_max=&models[]=lexus-is_200t&models[]=lexus-is_250&models[]=lexus-is_250c&models[]=lexus-is_300&models[]=lexus-is_350&models[]=lexus-is_350c&models[]=lexus-is_500&models[]=lexus-is_f&monthly_payment=&page_size=20&sort=best_match_desc&stock_type=all&year_max=&year_min=&zip=80259']
+    start_urls = [input("enter in your url")] #['https://www.cars.com/shopping/results/?dealer_id=&keyword=&list_price_max=&list_price_min=&makes[]=lexus&maximum_distance=all&mileage_max=&models[]=lexus-is_200t&models[]=lexus-is_250&models[]=lexus-is_250c&models[]=lexus-is_300&models[]=lexus-is_350&models[]=lexus-is_350c&models[]=lexus-is_500&models[]=lexus-is_f&monthly_payment=&page_size=20&sort=best_match_desc&stock_type=all&year_max=&year_min=&zip=80259']
 
     def parse(self, response):
         # Loop through each vehicle card
@@ -17,11 +17,12 @@ class CarsSpider(scrapy.Spider):
             }
 
         # Pagination logic
-        # Find all available pages from the pagination section
-        page_links = response.css('ul.sds-pagination__list li a::attr(href)').getall()
-        # The last page link in the list should be the "next" page
-        next_page = page_links[-1] if page_links else None
+        # Select the 'Next' link directly using its unique ID or class
+        next_page_link = response.css('a.sds-pagination__control[id="next_paginate"]::attr(href)').get()
+        # Join the relative URL with the response URL to get the absolute URL
+        next_page_url = response.urljoin(next_page_link) if next_page_link else None
 
         # Check if the "next" page link is not the current page
-        if next_page and response.urljoin(next_page) != response.url:
-            yield response.follow(next_page, callback=self.parse)
+        if next_page_url and next_page_url != response.url:
+            yield response.follow(next_page_url, callback=self.parse)
+
