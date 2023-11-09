@@ -12,7 +12,7 @@ BOT_NAME = "WebScraper"
 SPIDER_MODULES = ["WebScraper.spiders"]
 NEWSPIDER_MODULE = "WebScraper.spiders"
 
-DOWNLOAD_DELAY = 2.0
+DOWNLOAD_DELAY = 0.5
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "WebScraper (+http://www.yourdomain.com)"
@@ -63,9 +63,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "WebScraper.pipelines.WebscraperPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "WebScraper.pipelines.CarsPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
